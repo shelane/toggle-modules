@@ -1,0 +1,24 @@
+{
+  "name": "shelane/toggle-modules",
+  "description": "Enables and uninstalls specified modules per definined environment.",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Shelane French",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Acquia Engineering",
+      "homepage": "https://www.acquia.com",
+      "role": "Originator"
+    }
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Acquia\\ToggleModules\\": "./src/"
+    }
+  }
+}
