@@ -15,12 +15,11 @@ In your project, require the plugin with Composer:
 
 `composer require shelane/toggle-modules`
 
-TODO
-To by calling `recipes:multisite:init`, which is provided by this plugin:
+Use this plugin by calling `drupal:toggle:modules`. Under BLT <13, this command was run during the `drupal:update` 
+command as well as the `drupal:setup` when doing a new site install. You will need to add this command to your 
+processes.
 
-`blt recipes:multisite:init`
-TODO
-This will copy a template site directory to create a new multisite installation. Make sure to commit all new and changed files to Git.
+This will enable and disable the set of modules listed in the `blt.yml` file for that environment.
 
 # License
 
