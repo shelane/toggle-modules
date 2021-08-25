@@ -1,6 +1,6 @@
 {
   "name": "shelane/toggle-modules",
-  "description": "Enables and uninstalls specified modules per definined environment.",
+  "description": "Enables and uninstalls specified modules per defined environment.",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
