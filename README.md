@@ -11,15 +11,18 @@ software or provide any warranty as to its stability.
 
 To use this plugin, you must already have a Drupal project using BLT 13.
 
-In your project, require the plugin with Composer:
+1. Add this plugin to your project using composer:
 
 `composer require shelane/toggle-modules`
 
-Use this plugin by calling `drupal:toggle:modules`. Under BLT <13, this command was run during the `drupal:update` 
-command as well as the `drupal:setup` when doing a new site install. You will need to add this command to your 
-processes.
+2. Initialize the toggle settings for your project:
 
-This will enable and disable the set of modules listed in the `blt.yml` file for that environment.
+`blt recipes:config:init:toggle-modules`
+
+3. Update your `blt.yml` file with the list of modules you wish to enable to disable in each environment.
+
+The command is registered as post-command hooks for the blt commands `drupal:install` and `drupal:config:import`. You 
+can also call the command manually by calling `blt drupal:toggle:modules`.
 
 # License
 
