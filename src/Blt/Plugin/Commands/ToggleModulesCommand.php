@@ -5,6 +5,7 @@ namespace Acquia\ToggleModules\Blt\Plugin\Commands;
 use Acquia\Blt\Robo\Blt;
 use Acquia\Blt\Robo\BltTasks;
 use Acquia\Blt\Robo\Common\UserConfig;
+use Acquia\Blt\Robo\Common\YamlMunge;
 use Acquia\Blt\Robo\Exceptions\BltException;
 use Zumba\Amplitude\Amplitude;
 
@@ -84,4 +85,61 @@ class ToggleModulesCommand extends BltTasks {
     }
   }
 
+  /**
+   * Initializes default template toggle modules for this project.
+   *
+   * @command recipes:config:init:toggle-modules
+   *
+   * @throws \Acquia\Blt\Robo\Exceptions\BltException
+   */
+  public function generateToggleModulesConfig() {
+    $this->say("This command will automatically generate template toggle modules settings for this project.");
+    // Sets default values for the project's blt.yml file.
+    $project_yml = $this->getConfigValue('blt.config-files.project');
+    $this->say("Updating ${project_yml}...");
+    $project_config = YamlMunge::parseFile($project_yml);
+    $project_config['modules']['local']['enable'] = [
+      'dblog',
+      'devel',
+      'seckit',
+      'views_ui',
+    ];
+    $project_config['modules']['local']['uninstall'] = [
+      'acquia-connector',
+      'shield',
+    ];
+    $project_config['modules']['ci']['enable'] = [];
+    $project_config['modules']['ci']['uninstall'] = [
+      'acquia-connector',
+      'shield',
+    ];
+    $project_config['modules']['dev']['enable'] = [
+      'acquia-connector',
+      'shield',
+    ];
+    $project_config['modules']['dev']['uninstall'] = [];
+    $project_config['modules']['test']['enable'] = [
+      'acquia-connector',
+      'shield',
+    ];
+    $project_config['modules']['test']['uninstall'] = [
+      'devel',
+      'views_ui',
+    ];
+    $project_config['modules']['prod']['enable'] = [
+      'acquia-connector',
+      'shield',
+    ];
+    $project_config['modules']['prod']['uninstall'] = [
+      'devel',
+      'views_ui',
+    ];
+    try {
+      YamlMunge::writeFile($project_yml, $project_config);
+      $this->say("Please edit your project blt.yml file with desired module settings.");
+    }
+    catch (\Exception $e) {
+      throw new BltException("Unable to update $project_yml.");
+    }
+  }
 }
