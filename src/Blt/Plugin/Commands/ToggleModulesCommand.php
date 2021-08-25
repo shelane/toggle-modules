@@ -86,6 +86,24 @@ class ToggleModulesCommand extends BltTasks {
   }
 
   /**
+   * This will be called after the config import.
+   *
+   * @hook post-command drupal:config:import
+   */
+  public function importToggle() {
+    $this->invokeCommand('drupal:toggle:modules');
+  }
+
+  /**
+   * This will be called after the setup build.
+   *
+   * @hook post-command drupal:install
+   */
+  public function setupToggle() {
+    $this->invokeCommand('drupal:toggle:modules');
+  }
+
+  /**
    * Initializes default template toggle modules for this project.
    *
    * @command recipes:config:init:toggle-modules
