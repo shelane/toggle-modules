@@ -1,6 +1,6 @@
 <?php
 
-namespace Acquia\Blt\Robo\Commands\Drupal;
+namespace Acquia\ToggleModules\Blt\Plugin\Commands;
 
 use Acquia\Blt\Robo\Blt;
 use Acquia\Blt\Robo\BltTasks;
