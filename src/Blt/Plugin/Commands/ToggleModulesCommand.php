@@ -7,6 +7,7 @@ use Acquia\Blt\Robo\BltTasks;
 use Acquia\Blt\Robo\Common\UserConfig;
 use Acquia\Blt\Robo\Common\YamlMunge;
 use Acquia\Blt\Robo\Exceptions\BltException;
+use Robo\ResultData;
 use Zumba\Amplitude\Amplitude;
 
 /**
@@ -41,8 +42,8 @@ class ToggleModulesCommand extends BltTasks {
       // Uninstall modules.
       $disable_key = "modules.$environment.uninstall";
       $this->doToggleModules('pm-uninstall', $disable_key);
-    }
-    else {
+
+    } else {
       $this->say("Environment is unset. Skipping drupal:toggle:modules...");
     }
   }
@@ -81,7 +82,8 @@ class ToggleModulesCommand extends BltTasks {
     }
 
     if ($exit_code) {
-      throw new BltException("Could not toggle modules listed in $config_key.");
+      $this->say("There was a problem toggling modules listed in $config_key. You may want to check the outcome manually.");
+      return new ResultData(0);
     }
   }
 
