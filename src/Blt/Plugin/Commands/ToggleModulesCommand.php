@@ -42,8 +42,8 @@ class ToggleModulesCommand extends BltTasks {
       // Uninstall modules.
       $disable_key = "modules.$environment.uninstall";
       $this->doToggleModules('pm-uninstall', $disable_key);
-
-    } else {
+    } 
+    else {
       $this->say("Environment is unset. Skipping drupal:toggle:modules...");
     }
   }
