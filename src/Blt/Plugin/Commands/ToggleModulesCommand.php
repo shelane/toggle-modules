@@ -107,7 +107,7 @@ class ToggleModulesCommand extends BltTasks {
     $this->say("This command will automatically generate template toggle modules settings for this project.");
     // Sets default values for the project's blt.yml file.
     $project_yml = $this->getConfigValue('blt.config-files.project');
-    $this->say("Updating ${project_yml}...");
+    $this->say("Updating {$project_yml}...");
     $project_config = YamlMunge::parseFile($project_yml);
     $project_config['modules']['local']['enable'] = [
       'dblog',
